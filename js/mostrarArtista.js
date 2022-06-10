@@ -1,19 +1,18 @@
 export function pintarCanciones(resultado){
     let fila=document.getElementById("artista")
     
-    resultado.tracks.forEach(cancion => {
+    resultado.tracks.forEach((tracks,index) => {
         let columna=document.createElement("div")
-        columna.classList.add("col")
+        columna.classList.add("flexy")
 
         let tarjeta=document.createElement("div")
         tarjeta.classList.add("card")
         tarjeta.classList.add("h-100")
 
         let imagen=document.createElement("img")
-        imagen.classList.add("card-img-top")
-        imagen.classList.add("h-100")
-        imagen.classList.add("p-3")
-        imagen.src=cancion.album.images[0].url
+        imagen.height= tracks.album.images[2].height
+        imagen.width=tracks.album.images[2].width
+        imagen.src=tracks.album.images[0].url
 
         let separador = document.createElement("hr")
         separador.classList.add("w-50")
@@ -24,12 +23,14 @@ export function pintarCanciones(resultado){
         cuadroTexto.classList.add("px-3")
         cuadroTexto.classList.add("text-center")
 
-        let nombreCancion=document.createElement("h4")
-        nombreCancion.textContent=cancion.name
+        let nombreCancion=document.createElement("h2")
+        nombreCancion.textContent=tracks.name
 
-        let direccionCancion=document.createElement("audio")
-        direccionCancion.src=cancion.preview_url
-        direccionCancion.setAttribute("controls","controls")
+        let audio=document.createElement("audio")
+        audio.id= 'audio-player'
+        audio.src=tracks.preview_url
+        audio.type=tracks.type
+        audio.setAttribute("controls","controls")
 
         cuadroTexto.appendChild(nombreCancion)
         cuadroTexto.appendChild(direccionCancion)

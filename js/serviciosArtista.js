@@ -1,10 +1,13 @@
-import {URI,PARAMATROS_PETICION} from "./constantes.js"
+//import {URI,PARAMATROS_PETICION} from "./constantes.js"
 
-
-async function consumirAPI(){
-    let respuesta=await fetch(URI,PARAMATROS_PETICION)
-    let canciones=respuesta.json()
-    return(canciones)
+export async function consumirAPI(URI,GenerarTOKEN){
+    
+    let paramatros = {
+        method: "GET",
+        headers: { Authorization: GenerarTOKEN }
+    }
+    let respuesta = await fetch(URI, await paramatros)
+    let cancciones = respuesta.json()
+    return cancciones
 }
 
-export let resultado = await consumirAPI()
